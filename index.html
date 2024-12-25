@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Maquininha</title>
+
+	<script src="https://kit.fontawesome.com/092d3f6b65.js" crossorigin="anonymous"></script>
+	<style>
+		body{
+			background-color: #ded9d9;
+			display: flex;
+			flex-direction: column;
+			text-align: center;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.cards{
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.cards label{
+			margin-left: 20px;
+			border:1px solid black;
+			border-radius: 10px;
+			width: 180px;
+			height: 120px;
+			box-sizing: border-box;
+			font-family: 'Calibri';
+			font-weight: bold;
+			font-size: 18px;
+		}
+
+		.cards label:first-child{
+			margin-left: 0;
+		}
+
+		.cards p button{
+			border: 0;
+			background-color: transparent;
+			font-size: 18px;
+		}
+
+		#efetuar{
+			margin: 40px 0px;
+			font-size: 18px;
+		}
+
+		#efetuar input{
+			padding: 5px;
+			font-size: 18px;
+		}
+
+		#efetuar button{
+			margin-top: 5px;
+			padding: 5px 10px;
+			border: 1px solid black;
+			border-radius: 3px;
+			background-color: #ff6666;
+			font-size: 18px;
+			box-shadow: 0 6px 0 0 #660000;
+		}
+
+		#efetuar button:active{
+			transform: translateY(3px);
+			box-shadow: 0 3px 0 0 #660000;
+		}
+
+		h4{
+			margin-top: 40px;
+			margin-bottom: 0px;
+		}
+
+		#historico{
+			padding: 3px 0;
+			padding-left: 30px;
+			border: 1px solid black;
+			box-sizing: border-box;
+			height: 100px;
+			width: 400px;
+			background-color: white;
+			text-align: left;
+			overflow: auto;
+		}
+
+		#historico li{
+			margin:	3px 0;
+		}
+
+		.a{
+			background-color: #fc665b;
+		}
+		.b{
+			background-color: #fcff2e;
+		}
+		.c{
+			background-color: #71f227;
+		}
+		.d{
+			background-color: #1cfffb;
+		}
+		.e{
+			background-color: #1c7bff;
+		}
+		.f{
+			background-color: #ff2ef8;
+		}
+		.g{
+			color: white;
+			background-color: #333333;
+		}
+	</style>
+</head>
+
+<body>
+	<h2>RECEBEDOR</h2>
+	<div class="cards">
+		<label class="a" for="receberA">
+			<p>Cartão 1 <button onclick="nomear(0)"><i class="fas fa-edit"></i></button></p>
+			<p>25000 reais</p>
+			<input type="radio" id="receberA" name="receber" value=0>
+		</label>
+		<label class="b" for="receberB">
+			<p>Cartão 2 <button onclick="nomear(1)"><i class="fas fa-edit"></i></button></p>
+			<p>25000 reais</p>
+			<input type="radio" id="receberB" name="receber" value=1>
+		</label>
+		<label class="c" for="receberC">
+			<p>Cartão 3 <button onclick="nomear(2)"><i class="fas fa-edit"></i></button></p>
+			<p>25000 reais</p>
+			<input type="radio" id="receberC" name="receber" value=2>
+		</label>
+		<label class="d" for="receberD">
+			<p>Cartão 4 <button onclick="nomear(3)"><i class="fas fa-edit"></i></button></p>
+			<p>25000 reais</p>
+			<input type="radio" id="receberD" name="receber" value=3>
+		</label>
+		<label class="e" for="receberE">
+			<p>Cartão 5 <button onclick="nomear(4)"><i class="fas fa-edit"></i></button></p>
+			<p>25000 reais</p>
+			<input type="radio" id="receberE" name="receber" value=4>
+		</label>
+		<label class="f" for="receberF">
+			<p>Cartão 6 <button onclick="nomear(5)"><i class="fas fa-edit"></i></button></p>
+			<p>25000 reais</p>
+			<input type="radio" id="receberF" name="receber" value=5>
+		</label>
+		<label class="g" for="receberG">
+			<p>Banco</p>
+			<p>Infinitos reais</p>
+			<input type="radio" id="receberG" name="receber" value=6>
+		</label>
+	</div>
+
+	<div id="efetuar">
+		<label for="quantidade">
+			Quantidade<br>
+			<input id="quantidade" type="number" name="quantidade">
+		</label>
+		<br>
+		<button onclick="pagar();">Pagar</button>
+	</div>
+
+	<h2>PAGADOR</h2>
+	<div class="cards">
+		<label class="a" for="pagarA">
+			<p>Cartão 1 <button onclick="nomear(0)"><i class="fas fa-edit"></i></button></p>
+			<p>25000 reais</p>
+			<input type="radio" id="pagarA" name="pagar" value=0>
+		</label>
+		<label class="b" for="pagarB">
+			<p>Cartão 2 <button onclick="nomear(1)"><i class="fas fa-edit"></i></button></p>
+			<p>25000 reais</p>
+			<input type="radio" id="pagarB" name="pagar" value=1>
+		</label>
+		<label class="c" for="pagarC">
+			<p>Cartão 3 <button onclick="nomear(2)"><i class="fas fa-edit"></i></button></p>
+			<p>25000 reais</p>
+			<input type="radio" id="pagarC" name="pagar" value=2>
+		</label>
+		<label class="d" for="pagarD">
+			<p>Cartão 4 <button onclick="nomear(3)"><i class="fas fa-edit"></i></button></p>
+			<p>25000 reais</p>
+			<input type="radio" id="pagarD" name="pagar" value=3>
+		</label>
+		<label class="e" for="pagarE">
+			<p>Cartão 5 <button onclick="nomear(4)"><i class="fas fa-edit"></i></button></p>
+			<p>25000 reais</p>
+			<input type="radio" id="pagarE" name="pagar" value=4>
+		</label>
+		<label class="f" for="pagarF">
+			<p>Cartão 6 <button onclick="nomear(5)"><i class="fas fa-edit"></i></button></p>
+			<p>25000 reais</p>
+			<input type="radio" id="pagarF" name="pagar" value=5>
+		</label>
+		<label class="g" for="pagarG">
+			<p>Banco</p>
+			<p>Infinitos reais</p>
+			<input type="radio" id="pagarG" name="pagar" value=6>
+		</label>
+	</div>
+
+	<h4>Histórico:</h4>
+	<ul id="historico">
+		
+	</ul>
+
+	<script>
+		var nome = ["Cartão 1", "Cartão 2", "Cartão 3", "Cartão 4", "Cartão 5", "Cartão 6", "Banco"];
+		var dinheiro = [25000,25000,25000,25000,25000,25000,0];
+
+		function update(x){
+			if(x!=6){
+				let cards = document.getElementsByClassName('cards');
+
+				for(let i=0; i<cards.length; i++){
+					let labels = cards[i].getElementsByTagName('label');
+					let ps = labels[x].getElementsByTagName('p');
+
+					ps[0].innerHTML = `${nome[x]} <button onclick='nomear(${x})'><i class='fas fa-edit'></i></button>`;
+					ps[1].innerHTML = `${dinheiro[x]} reais`;
+				}
+			}	
+		}
+
+		function pagar(){
+			let recebedor = document.querySelector('input[name="receber"]:checked').value;
+			let pagador = document.querySelector('input[name="pagar"]:checked').value;
+			let quantidade = Number(document.getElementById('quantidade').value);
+
+			if(quantidade<=0){
+				alert("O valor a ser transferido deve ser maior que 0.");
+				return;
+			}
+
+			if(pagador!=6 && dinheiro[pagador]<quantidade){
+				alert(`${nome[pagador]} não tem dinheiro suficiente para a transferência.\n(Faltam ${quantidade - dinheiro[pagador]} reais)`);
+				return;
+			}
+
+			if(confirm(`Confirme a operação:\n${nome[pagador]} vai pagar ${quantidade} reais para ${nome[recebedor]}.`)){
+				dinheiro[recebedor] += quantidade;
+				dinheiro[pagador] -= quantidade;
+
+				update(recebedor);
+				update(pagador);
+
+				let ul = document.querySelector('#historico');
+				let line = document.createElement('li');
+
+				line.innerHTML = `${nome[pagador]} pagou ${quantidade} reais para ${nome[recebedor]};`;
+				ul.appendChild(line);
+
+				ul.scrollTop = ul.scrollHeight;
+			}
+
+			document.querySelector('input[name="receber"]:checked').checked = false;
+			document.querySelector('input[name="pagar"]:checked').checked = false;
+			document.getElementById('quantidade').value = '';
+		}
+
+		function nomear(x){
+			let novoNome = prompt(`Insira o novo nome para o cartão:`);
+			if(novoNome===null){
+				return;
+			}
+			if(novoNome.length<2){
+				alert("Nome deve conter pelo menos 2 caracteres.");
+				return;
+			}
+			nome[x] = novoNome;
+			update(x);
+		}
+	</script>
+</body>
+</html>
